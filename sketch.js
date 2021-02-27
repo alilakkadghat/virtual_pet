@@ -17,6 +17,8 @@ function setup() {
 
   var nameInput = createInput("NAME THE DOG");
   nameInput.position(1000,85);
+  var greeting=createElement('h2')
+  greeting.position(1000,100);
   var saveNameButton = createButton("SAVE NAME");
   saveNameButton.position(1050,110);
   saveNameButton.mousePressed(function(){
@@ -24,7 +26,11 @@ function setup() {
     database.ref("/").update({
       Name: name
     })
+    saveNameButton.hide()
+        nameInput.hide()
+        greeting.html("Hello\t"+name)
   })
+  
   foodStock=database.ref('Food');
   foodStock.on("value",readStock);
   
